@@ -33,6 +33,7 @@ const FirstScreen = ({ navigation }) => {
           fetchDataAndMove();
         }}
         disabled={!value}
+        testID="first-button"
       />
     </View>
   );
