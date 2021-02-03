@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, Button, Image, Alert } from "react-native";
+import { View, Text, Button, Image, Alert, ScrollView } from "react-native";
+import { SvgUri } from "react-native-svg";
 const axios = require("axios");
 
 const fetchDataAndMove = (capital, navigation) => {
@@ -26,7 +27,12 @@ const Rescountry = ({ data, navigation }) => {
   if (data) {
     const comp = data.map((item) => {
       return (
-        <View>
+        <ScrollView
+          contentContainerStyle={{
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <Text>Capital : {item.capital}</Text>
           <Text>Population : {item.population}</Text>
           <Text>
@@ -37,11 +43,12 @@ const Rescountry = ({ data, navigation }) => {
             source={{ uri: item.flag }}
             style={{ width: 40, height: 40 }}
           />
+          <SvgUri width="10%" height="10%" uri={item.flag} />
           <Button
             title="Capital Weather"
             onPress={() => fetchDataAndMove(item.capital, navigation)}
           />
-        </View>
+        </ScrollView>
       );
     });
     return comp;
